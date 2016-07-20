@@ -1,0 +1,14 @@
+09_Tsikli_DO_WHILE
+
+Math.random()
+while{
+if(){
+break;
+}
+действие
+}
+
+do{действие}
+While{
+действие
+}
