@@ -1,0 +1,13 @@
+<meta charset="utf-8">
+<script type="text/javascript">
+
+var Vklad = prompt("Введите сумму вклада");
+var PercentPerYear = prompt("Введите процентную ставку");
+var SrokVklada = prompt("На какой срок планируете вложить?");
+
+for(var n=1; n<=SrokVklada; n++){
+	Vklad = parseInt(Vklad) + parseInt(Vklad) * PercentPerYear / 100;
+	alert(parseInt(n) + " год " + parseInt(Vklad));
+}
+
+</script>>
