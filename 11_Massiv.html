@@ -13,8 +13,8 @@ var Robot;					//Robot-это случайное число сгенериров
 							//из массива arrRuletka
 var	arrRed = [1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36];	//Красные цифры
 var	arrBlack = [2,4,6,8,10,11,13,15,17,20,22,24,26,28,29,31,33,35];	//Чёргые цифры
-var arrOdd = [2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36];	//Чётные цифры
-var arrEven = [1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,3335];	//Нечётные цифры
+var arrChet = [2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36];	//Чётные цифры
+var arrNeChet = [1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,3335];	//Нечётные цифры
 var Color;					//Color - переменная хранит цвет выпавшей цифры 
 var OddEven;				//OddEven - переменная хранит чётность выпавшей цифры
 
@@ -98,43 +98,49 @@ alert("НА РУЛЕТКЕ ВЫПАЛА ЦИФРА " + Robot + "\n" + "Цвет:
 //совпала цифра
 for(var i=0; i<arrStavka.length; i++){
 	if (Robot == arrStavka[i]){
-		alert("Ваша ставка выиграла 1БЛОК: " + arrStavka[i]);
+		alert("Ваша ставка выиграла: " + "\n" + "Число: " + arrStavka[i]);
 	}
 }	
 
-//совпал красный цвет
+//сопало Чётное число
+for(var i=0; i<arrStavka.length; i++){
+	for(var j=0; j<arrChet.length; j++){
+		if(Robot == arrChet[j]){
+			alert("Ваша ставка выиграла: " + "\n" + "Четное число: " + arrChet[j]);
+		}
+
+	}
+}
+
+//сопало Нечётное число
+for(var i=0; i<arrStavka.length; i++){
+	for(var j=0; j<arrNeChet.length; j++){
+		if(Robot == arrNeChet[j]){
+			alert("Ваша ставка выиграла: " + "\n" + "Нечетное число: " + arrNeChet[j]);
+		}
+
+	}
+}
+
+//сопал цвет Красный 
 for(var i=0; i<arrStavka.length; i++){
 	for(var j=0; j<arrRed.length; j++){
-		if (Robot == arrRed[j]){
-			alert("Ваша ставка выиграла 2БЛОК: " + arrRed[j]);
-		}	
+		if(Robot == arrRed[j]){
+			alert("Ваша ставка выиграла: " + "\n" + "Красный цвет: " + arrRed[j]);
+		}
+
 	}
 }
 
-//совпал черный цвет
+//сопал цвет Чёрный 
 for(var i=0; i<arrStavka.length; i++){
 	for(var j=0; j<arrBlack.length; j++){
-		if (Robot == arrBlack[j]){
-			alert("Ваша ставка выиграла 3БЛОК: " + arrBlack[j]);
-		}	
+		if(Robot == arrBlack[j]){
+			alert("Ваша ставка выиграла: " + "\n" + "Чёрныё цвет: " + arrBlack[j]);
+		}
+
 	}
 }
 
-//совпал нечётный
-for(var i=0; i<arrStavka.length; i++){
-	for(var j=0; j<arrOdd.length; j++){
-		if (Robot == arrOdd[j]){
-			alert("Ваша ставка выиграла 4БЛОК: " + arrOdd[j]);
-		}	
-	}
-}	
 
-//совпал чётный
-for(var i=0; i<arrStavka.length; i++){
-	for(var j=0; j<arrEven.length; j++){
-		if (Robot == arrEven[j]){
-			alert("Ваша ставка выиграла 5БЛОК: " + arrEven[j]);
-		}	
-	}
-}	
 </script>
