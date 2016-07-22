@@ -95,5 +95,46 @@ for(var i=0; i<arrRed.length; i++){
 
 alert("НА РУЛЕТКЕ ВЫПАЛА ЦИФРА " + Robot + "\n" + "Цвет: " + Color + "\n" + "ЧЁТ/НЕЧЁТ: " + OddEven);
 
+//совпала цифра
+for(var i=0; i<arrStavka.length; i++){
+	if (Robot == arrStavka[i]){
+		alert("Ваша ставка выиграла 1БЛОК: " + arrStavka[i]);
+	}
+}	
 
+//совпал красный цвет
+for(var i=0; i<arrStavka.length; i++){
+	for(var j=0; j<arrRed.length; j++){
+		if (Robot == arrRed[j]){
+			alert("Ваша ставка выиграла 2БЛОК: " + arrRed[j]);
+		}	
+	}
+}
+
+//совпал черный цвет
+for(var i=0; i<arrStavka.length; i++){
+	for(var j=0; j<arrBlack.length; j++){
+		if (Robot == arrBlack[j]){
+			alert("Ваша ставка выиграла 3БЛОК: " + arrBlack[j]);
+		}	
+	}
+}
+
+//совпал нечётный
+for(var i=0; i<arrStavka.length; i++){
+	for(var j=0; j<arrOdd.length; j++){
+		if (Robot == arrOdd[j]){
+			alert("Ваша ставка выиграла 4БЛОК: " + arrOdd[j]);
+		}	
+	}
+}	
+
+//совпал чётный
+for(var i=0; i<arrStavka.length; i++){
+	for(var j=0; j<arrEven.length; j++){
+		if (Robot == arrEven[j]){
+			alert("Ваша ставка выиграла 5БЛОК: " + arrEven[j]);
+		}	
+	}
+}	
 </script>
