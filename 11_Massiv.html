@@ -76,6 +76,7 @@ Robot=arrRuletka[Math.round(Math.random()*(arrRuletka.length-1))];
 
 //определяем цвет и чётность выпавшей цифры
 for(var i=0; i<arrRed.length; i++){
+	
 	if(arrRed[i] == Robot){
 		Color = 'Красный';
 	} else if (Robot == 0) {
@@ -84,11 +85,12 @@ for(var i=0; i<arrRed.length; i++){
 		Color = 'Чёрный';
 	}
 
+	
 	if(Robot %2 == 0){
 		OddEven = 'Чётное';
 	} else if (Robot == 0){
 		OddEven = '';
-	}else {
+	} else {
 		OddEven = 'Нечётное';
 	}
 }
@@ -98,45 +100,45 @@ alert("НА РУЛЕТКЕ ВЫПАЛА ЦИФРА " + Robot + "\n" + "Цвет:
 //совпала цифра
 for(var i=0; i<arrStavka.length; i++){
 	if (Robot == arrStavka[i]){
-		alert("Ваша ставка выиграла: " + "\n" + "Число: " + arrStavka[i]);
+		alert(Robot + "Ваша ставка выиграла №1: " + "\n" + "Число: " + arrStavka[i]);
 	}
 }	
 
 //сопало Чётное число
-for(var i=0; i<arrStavka.length; i++){
-	for(var j=0; j<arrChet.length; j++){
-		if(Robot == arrChet[j]){
-			alert("Ваша ставка выиграла: " + "\n" + "Четное число: " + arrChet[j]);
+for(var i=0; i<arrChet.length; i++){
+	for(var j=0; j<arrStavka.length; j++){
+		if(Robot == arrChet[i]){
+			alert(Robot + "Ваша ставка выиграла №2: " + "\n" + "Четное число: " + arrChet[i]);
 		}
 
 	}
 }
 
 //сопало Нечётное число
-for(var i=0; i<arrStavka.length; i++){
-	for(var j=0; j<arrNeChet.length; j++){
-		if(Robot == arrNeChet[j]){
-			alert("Ваша ставка выиграла: " + "\n" + "Нечетное число: " + arrNeChet[j]);
+for(var i=0; i<arrNeChet.length; i++){
+	for(var j=0; j<arrStavka.length; j++){
+		if(Robot == arrNeChet[i]){
+			alert(Robot + "Ваша ставка выиграла №3: " + "\n" + "Нечетное число: " + arrNeChet[i]);
 		}
 
 	}
 }
 
 //сопал цвет Красный 
-for(var i=0; i<arrStavka.length; i++){
-	for(var j=0; j<arrRed.length; j++){
-		if(Robot == arrRed[j]){
-			alert("Ваша ставка выиграла: " + "\n" + "Красный цвет: " + arrRed[j]);
+for(var i=0; i<arrRed.length; i++){
+	for(var j=0; j<arrStavka.length; j++){
+		if(Robot == arrRed[i]){
+			alert(Robot + "Ваша ставка выиграла №4: " + "\n" + "Красный цвет: " + arrRed[i]);
 		}
 
 	}
 }
 
 //сопал цвет Чёрный 
-for(var i=0; i<arrStavka.length; i++){
-	for(var j=0; j<arrBlack.length; j++){
-		if(Robot == arrBlack[j]){
-			alert("Ваша ставка выиграла: " + "\n" + "Чёрныё цвет: " + arrBlack[j]);
+for(var i=0; i<arrBlack.length; i++){
+	for(var j=0; j<arrStavka.length; j++){
+		if(Robot == arrBlack[i]){
+			alert(Robot + "Ваша ставка выиграла №5: " + "\n" + "Чёрныё цвет: " + arrBlack[i]);
 		}
 
 	}
