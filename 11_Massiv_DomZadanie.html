@@ -4,16 +4,10 @@
 do{
 alert("ЗАДАНИЕ УРОК 11" + "\n" + "\n" + "*В стимуляторе генерировать тип результата: черное, красное или зеро (например: 1, 0, -1 )" + "\n" + "\n" + "*Запустить симулятор 1 000 000 раундов." + "\n" + "\n" + "*Узнать, какое максимальное число раундов подряд выподало красное." + "\n" + "\n" + "Черное: -1" + "\n" + "Красное: 1" + "\n" + "Зеро: 0" + "\n" + "\n" + "Раунды: вводит пользователь." + "\n" + "\n" + "Количество выпавших: ?");
 
-var Black = '1';
-var Red = '0';
-var Zero = '-1';
 var arrRezultat = [];
 var Raunds = 0;
 var	arrRed = [1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36];	//Красные цифры
 var	arrBlack = [2,4,6,8,10,11,13,15,17,20,22,24,26,28,29,31,33,35];	//Чёрные цифры
-var arrKolRed = [];		//Количество красных цифр
-var arrKolBlack = [];		//Количество черных цифр
-var arrKolZero = [];		//Количество зеро
 var KolOne = 0;
 var KolZero = 0;
 var KolMinOne = 0;
@@ -30,27 +24,37 @@ for(var i=0; i<arrRezultat.length; i++){
 	for(var j=0; j<arrBlack.length; j++){
 		if(arrRezultat[i] == arrBlack[j]){
 			KolOne++;
+			arrRezultat[i] = 'Black';
 		}
 	}
 }
+
+
 
 for(var i=0; i<arrRezultat.length; i++){
 	for(var j=0; j<arrRed.length;j++){
 		if(arrRezultat[i] == arrRed[j]){
 			KolZero++;
+			arrRezultat[i] = 'Red';
 		}
 	}
 }
 
+
+
+
 for(var i=0; i<arrRezultat.length; i++){
 		if(arrRezultat[i] == 0){
 			KolMinOne++;
+			arrRezultat[i] = 'Zero';
 		}
 }
 
 alert(arrRezultat + "\n" + "\n" + "Всего: " + Raunds + " шт." + "\n" + "Черное: " + KolOne + " шт." + "\n"  + "Красное: " + KolZero + " шт." + "\n" + "Зеро: " + KolMinOne + " шт.");
+
+
+
 } while(stop == prompt("Продолжить?" + "\n" + "Для продолжении наберите 'да'."));
 
 
-//alert("Количкство красных цифр: " + KolRed + "\n" + "Количкство черных цифр: " +  KolBlack + "\n" + "Количкство зеро: " + KolZero);
 </script>
