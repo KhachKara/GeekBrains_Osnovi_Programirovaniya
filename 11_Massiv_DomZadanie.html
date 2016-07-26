@@ -38,27 +38,34 @@ for(var i=0; i<arrRezultat.length; i++){
 		}
 }
 
-var arrRedKol = [];
-var RedKol = 0;
 
 for(var i=0; i<arrRezultat.length; i++){
 	for(var j=0; j<arrRed.length;j++){
 		if(arrRezultat[i] == arrRed[j]){
 			KolZero++;	
 			arrRezultat[i] = 'Red';
-			RedKol++;
-			arrRedKol.push(RedKol);
-		} else {
-			RedKol = 0;
 		}
 	}
-	alert(arrRedKol);
 }
 
+var length = 0;
+var max_length = 0;
 
+for(var i=0; i<arrRezultat.length; i++){
+		length = 0;
 
+	while (i<arrRezultat.length && arrRezultat[i] == 'Red'){
+		i++;
+		length = length + 1;
+	}
+	if(length > max_length){
+		max_length = length;
+	}
+}
 
 alert(arrRezultat + "\n" + "\n" + "Всего: " + Raunds + " шт." + "\n" + "Черное: " + KolOne + " шт." + "\n"  + "Красное: " + KolZero + " шт." + "\n" + "Зеро: " + KolMinOne + " шт.");
+
+alert(max_length);
 
 } while(stop == prompt("Продолжить?" + "\n" + "Для продолжении наберите 'да'."));
 
