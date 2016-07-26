@@ -14,7 +14,7 @@ alert("УРОК 12 ФУНКЦИИ" + "\n" + "\n" + "Игра BLACK JACK" + "\n" 
 
 //тело игры в Black Jack
 do{
-	var Stop = '0';		//переменная для выхода из цикла
+	var Stop = '0';			//переменная для выхода из цикла
 	var SummaIgroka = 0;	//Сумма карт игрока
 
 	//функция для генерации случайных чисел в заданном диапазоне min, max
@@ -27,13 +27,13 @@ do{
 		return arrKarti[sluchaynoeChislo(0,arrTsenaKart.length - 1)];
 	};
 
-	// функция подсчета суммы карт
-	function f_SummaKart(Sum,arr){
-	for(var i=0; i<arrIgrok.length; i++){
-		SummaIgroka = parseInt(SummaIgroka) + parseInt(arrIgrok[i]);
-	return Sum;
-		}
-	}
+	// // функция подсчета суммы карт
+	// function f_SummaKart(Sum,arr){
+	// for(var i=0; i<arrIgrok.length; i++){
+	// 	SummaIgroka = parseInt(SummaIgroka) + parseInt(arrIgrok[i]);
+	// return Sum;
+	// 	}
+	// }
 
 //-----------------------------------------------------------------------------------
 	//цикл для выдачи двух карт сразу
@@ -43,7 +43,8 @@ do{
 
 	//Сумма ценностей карт игрока
 	for(var i=0; i<arrIgrok.length; i++){
-		f_SummaKart(SummaIgroka,arrIgrok);
+		SummaIgroka = SummaIgroka + parseInt(arrIgrok[i]);
+		alert(typeof SummaIgroka);
 	}
 	
 	alert("Вам выпали карты: " + arrIgrok + " Сумма: " + SummaIgroka);
@@ -51,14 +52,16 @@ do{
 	do{
 
 		if(Eshe = prompt("Вам выпали карты: " + arrIgrok + "\n" + "\n" + "Желаете еще карту?" + "\n" + "\n" + "Если да вводите '0' , если нет 'ENTER'")){
-			arrIgrok.push(razdachaKart());
 			if(Eshe == '0'){
-				SummaIgroka = SummaIgroka + arrTsenaKart[i+1];
+				arrIgrok.push(razdachaKart());
+				for(var i=0; i<arrIgrok.length; i++){
+				SummaIgroka = SummaIgroka + parseInt(arrIgrok[arrIgrok.length - 1]);
 				if(SummaIgroka > 21){
-					alert("Перебор!" + "\n" + "Вы проиграли");
+					alert("УПС! ПЕРЕБОР!" + "\n" + "Добавленная карта: " + arrIgrok[arrIgrok.length - 1] + "\n" + "\n" + "Вы проиграли");
 					break;
+					}
 				}
-			}		
+			}			
 		}
 
 	alert("Ваши карты: " + arrIgrok + "\n" + "Сумма: " + SummaIgroka);
