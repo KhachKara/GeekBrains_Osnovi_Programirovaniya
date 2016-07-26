@@ -1,0 +1,62 @@
+<meta charset="utf-8">
+<script type="text/javascript">
+
+var arrIgrok = [];											// Карты игрока
+var arrDealer = [];											// Карты дилера
+var arrKarti = ['6','7','8','9','10','J','Q','K','A'];		// Карты
+var	arrTsenaKart = [6,7,8,9,10,10,10,10,11];
+var Deposit = 100;											// Депозит 
+var	Stavka = 0;											// Стоимость одной ставки
+var Viigrish = 0											// Выиигрыш
+var Eshe = 'да';
+
+alert("УРОК 12 ФУНКЦИИ" + "\n" + "\n" + "Игра BLACK JACK" + "\n" + "\n" + "Ценность карт." + "\n" + "6 - 6" + "\n" + "7-7" + "\n" + "8-8" + "\n" + "9-9" + "\n" + "10-10" + "\n" + "J-10" + "\n" + "Q-10" + "\n" + "K-10" + "\n" + "A-11");
+
+//тело игры в Black Jack
+do{
+	var Stop = 'да';		//переменная для выхода из цикла
+	var SummaIgroka = 0;	//Сумма карт игрока
+
+	//функция для генерации случайных чисел в заданном диапазоне min, max
+	function sluchaynoeChislo(min, max){
+		return Math.floor(Math.random() * (max - min + 1)) + min;
+	}
+
+	//функция для генерации случайных карт
+	function razdachaKart(){
+		return arrKarti[sluchaynoeChislo(0,arrKarti.length - 1)];
+	};
+//-----------------------------------------------------------------------------------
+	var i=1;									//количество карт на руках
+	SummaIgroka = arrIgrok[0] + arrIgrok[1];	//Сумма ценностей карт игрока
+
+	//цикл для выдачи двух карт сразу
+	for (var i=0; i < 2; i++) {
+		arrIgrok.push(razdachaKart());
+	}
+
+	alert("Вам выпали карты: " + arrIgrok + "Сумма: " + SummaIgroka);
+
+	do{
+
+		if(Eshe = prompt("Вам выпали карты: " + arrIgrok + "\n" + "\n" + "Желаете еще карту?" + "\n" + "\n" + "Если да вводите 'да'" + "\n" + "\n" + "Нажмите ENTER если хотите продолжить.")){
+			arrIgrok.push(razdachaKart());
+			if(Eshe == 'да'){
+				i++;
+				SummaIgroka = SummaIgroka + arrIgrok[i+1];
+				if(SummaIgroka > 21){
+					alert("Перебор!" + "\n" + "Вы проиграли");
+					break;
+				}
+			}		
+		}
+
+	alert("Ваши карты: " + arrIgrok + "\n" + "Сумма: " + SummaIgroka);
+
+	}while(Eshe == 'да')
+		
+	arrIgrok = [];
+Stop = prompt("Хотите завершить игру?" + "\n" + "Водите 'да' в поле с низу");
+} while (Stop != 'да');
+
+</script>
