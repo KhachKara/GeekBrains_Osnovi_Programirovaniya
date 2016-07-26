@@ -8,7 +8,7 @@ var	arrTsenaKart = [2,3,4,5,6,7,8,9,10,10,10,10,11];						// Цена карт
 var Deposit = 100;															// Депозит 
 var	Stavka = 0;												// Стоимость одной ставки
 var Viigrish = 0											// Выиигрыш
-var Eshe = 'да';
+var Eshe = '0';
 
 alert("УРОК 12 ФУНКЦИИ" + "\n" + "\n" + "Игра BLACK JACK" + "\n" + "\n" + "Ценность карт." + "\n" + "2 - 2" + "\n" + "3 - 3" + "\n" + "4 - 4" + "\n" + "5 - 5" + "\n" + "6 - 6" + "\n" + "7 - 7" + "\n" + "8 - 8" + "\n" + "9 - 9" + "\n" + "10 - 10" + "\n" + "J - 10" + "\n" + "Q - 10" + "\n" + "K - 10" + "\n" + "A - 11");
 
@@ -27,12 +27,13 @@ do{
 		return arrKarti[sluchaynoeChislo(0,arrTsenaKart.length - 1)];
 	};
 
-	// // функция преоброзования букв в цифры
-	// function LetterToNumber(arr1,arr2){
-	// for(var i=0; i<arrKarti.length; i++){
-	// 	arr1[i] = arr2[i];
-	// }
-	// return arr1;
+	// функция подсчета суммы карт
+	function f_SummaKart(Sum,arr){
+	for(var i=0; i<arrIgrok.length; i++){
+		SummaIgroka = parseInt(SummaIgroka) + parseInt(arrIgrok[i]);
+	return Sum;
+		}
+	}
 
 //-----------------------------------------------------------------------------------
 	//цикл для выдачи двух карт сразу
@@ -42,17 +43,16 @@ do{
 
 	//Сумма ценностей карт игрока
 	for(var i=0; i<arrIgrok.length; i++){
-		SummaIgroka = parseInt(SummaIgroka) + parseInt(arrIgrok[i]);
+		f_SummaKart(SummaIgroka,arrIgrok);
 	}
 	
 	alert("Вам выпали карты: " + arrIgrok + " Сумма: " + SummaIgroka);
 
 	do{
 
-		if(Eshe = prompt("Вам выпали карты: " + arrIgrok + "\n" + "\n" + "Желаете еще карту?" + "\n" + "\n" + "Если да вводите '0' , если нет 'ENTER' " + "\n" + "\n" + "Нажмите ENTER если хотите продолжить.")){
+		if(Eshe = prompt("Вам выпали карты: " + arrIgrok + "\n" + "\n" + "Желаете еще карту?" + "\n" + "\n" + "Если да вводите '0' , если нет 'ENTER'")){
 			arrIgrok.push(razdachaKart());
 			if(Eshe == '0'){
-				i++;
 				SummaIgroka = SummaIgroka + arrTsenaKart[i+1];
 				if(SummaIgroka > 21){
 					alert("Перебор!" + "\n" + "Вы проиграли");
@@ -67,6 +67,6 @@ do{
 		
 	arrIgrok = [];
 Stop = prompt("Хотите завершить игру?" + "\n" + "Водите '0' в поле с низу");
-} while (Stop != '0');
+} while (Stop != '0')
 
 </script>
