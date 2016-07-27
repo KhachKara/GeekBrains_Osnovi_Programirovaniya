@@ -1,11 +1,11 @@
 <meta charset="utf-8">
 <script type="text/javascript">
 
-var arrIgrok = [];															// Карты игрока
-var arrDealer = [];															// Карты дилера
+var arrIgrok = [];													// Карты игрока
+var arrDealer = [];													// Карты дилера
 var arrKarti = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];		// Карты
-var	arrTsenaKart = [2,3,4,5,6,7,8,9,10,10,10,10,11];						// Цена карт
-var Deposit = 100;															// Депозит 
+var	arrTsenaKart = [2,3,4,5,6,7,8,9,10,10,10,10,11];				// Цена карт
+var Deposit = 100;													// Депозит 
 var	Stavka = 0;												// Стоимость одной ставки
 var Viigrish = 0											// Выиигрыш
 var Eshe = '0';
@@ -44,17 +44,17 @@ do{
 	//Сумма ценностей карт игрока
 	for(var i=0; i<arrIgrok.length; i++){
 		SummaIgroka = SummaIgroka + parseInt(arrIgrok[i]);
-		alert(typeof SummaIgroka);
 	}
+		alert(typeof SummaIgroka);
 	
 	alert("Вам выпали карты: " + arrIgrok + " Сумма: " + SummaIgroka);
 
 	do{
 
-		if(Eshe = prompt("Вам выпали карты: " + arrIgrok + "\n" + "\n" + "Желаете еще карту?" + "\n" + "\n" + "Если да вводите '0' , если нет 'ENTER'")){
-			if(Eshe == '0'){
-				arrIgrok.push(razdachaKart());
-				for(var i=0; i<arrIgrok.length; i++){
+		Eshe = prompt("Вам выпали карты: " + arrIgrok + "\n" + "\n" + "Желаете еще карту?" + "\n" + "\n" + "Если да вводите '0' , если нет 'ENTER'");
+		if(Eshe == '0'){
+			arrIgrok.push(razdachaKart());
+			for(var i=0; i<arrIgrok.length; i++){
 				SummaIgroka = SummaIgroka + parseInt(arrIgrok[arrIgrok.length - 1]);
 				if(SummaIgroka > 21){
 					alert("УПС! ПЕРЕБОР!" + "\n" + "Добавленная карта: " + arrIgrok[arrIgrok.length - 1] + "\n" + "\n" + "Вы проиграли");
@@ -62,14 +62,13 @@ do{
 					}
 				}
 			}			
-		}
 
 	alert("Ваши карты: " + arrIgrok + "\n" + "Сумма: " + SummaIgroka);
 
 	}while(Eshe == '0')
 		
 	arrIgrok = [];
-Stop = prompt("Хотите завершить игру?" + "\n" + "Водите '0' в поле с низу");
+Stop = prompt("Хотите завершить игру?" + "\n" + "Вводите '0' в поле с низу");
 } while (Stop != '0')
 
 </script>
