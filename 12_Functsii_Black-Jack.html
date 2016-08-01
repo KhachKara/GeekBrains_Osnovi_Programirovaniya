@@ -108,12 +108,18 @@ do{
 	//считает сумму достоинств выпавшых карт
 	SummaDealer = SummNumber(arrDealer);
 	
-	while (SummaDealer <= SummaIgrok) {
+	while (SummaDealer < SummaIgrok) {
 		arrDealer.push(RazdachaKart());
 		SummaDealer = SummNumber(arrDealer);
 	}
+
+	// случай при ничье
+	if(arrDealer == SummaIgrok){
+		alert("НИЧЬЯ!");
+	}
 	
 	alert("Ваши карты: " + arrIgrok + "\n" + SummaIgrok + "\n" + "\n" + "Карты диллера: " + arrDealer  + "\n" + SummaDealer);
+
 
 Stop = prompt("Хотите завершить игру?" + "\n" + "Вводите '0' в поле с низу");
 } while (Stop != '0')
