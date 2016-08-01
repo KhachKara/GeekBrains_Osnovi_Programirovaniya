@@ -1,74 +1,125 @@
 <meta charset="utf-8">
 <script type="text/javascript">
 
-var arrIgrok = [];													// Карты игрока
-var arrDealer = [];													// Карты дилера
-var arrKarti = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];		// Карты
-var	arrTsenaKart = [2,3,4,5,6,7,8,9,10,10,10,10,11];				// Цена карт
-var Deposit = 100;													// Депозит 
-var	Stavka = 0;												// Стоимость одной ставки
-var Viigrish = 0											// Выиигрыш
-var Eshe = '0';
+var arrKarti = 			['2','3','4','5','6','7','8','9','10','J','Q','K','A'];			//Эталон Карты
+var arrKartiNumber = 	['2','3','4','5','6','7','8','9','10','10','10','10','11'];		//Временные карты
 
-alert("УРОК 12 ФУНКЦИИ" + "\n" + "\n" + "Игра BLACK JACK" + "\n" + "\n" + "Ценность карт." + "\n" + "2 - 2" + "\n" + "3 - 3" + "\n" + "4 - 4" + "\n" + "5 - 5" + "\n" + "6 - 6" + "\n" + "7 - 7" + "\n" + "8 - 8" + "\n" + "9 - 9" + "\n" + "10 - 10" + "\n" + "J - 10" + "\n" + "Q - 10" + "\n" + "K - 10" + "\n" + "A - 11");
+var Deposit = 100;						// Депозит 
+var	Stavka = 0;							// Стоимость одной ставки
+var Viigrish = 0						// Выиигрыш
+var Eshe = '0';							//Условия выхода из игры
 
-//тело игры в Black Jack
-do{
-	var Stop = '0';			//переменная для выхода из цикла
-	var SummaIgroka = 0;	//Сумма карт игрока
+alert("УРОК 12 ФУНКЦИИ" + "\n" + "\n" + "Игра BLACK JACK" + "\n" + "\n" + "Достоинства карт." + "\n" + "2 - 2" + "\n" + "3 - 3" + "\n" + "4 - 4" + "\n" + "5 - 5" + "\n" + "6 - 6" + "\n" + "7 - 7" + "\n" + "8 - 8" + "\n" + "9 - 9" + "\n" + "10 - 10" + "\n" + "J - 10" + "\n" + "Q - 10" + "\n" + "K - 10" + "\n" + "A - 11");
 
-	//функция для генерации случайных чисел в заданном диапазоне min, max
-	function sluchaynoeChislo(min, max){
-		return Math.floor(Math.random() * (max - min + 1)) + min;
+//функция для генерации случайных чисел в заданном диапазоне min, max
+function SluchaynoeChislo(min, max){
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+//функция для генерации случайных карт
+function RazdachaKart(){
+	return (arrKarti[SluchaynoeChislo(0,arrKarti.length-1)]);
+};
+
+
+// функция для подсчета суммы карт
+function SummNumber(arrSomebodyKarti){
+	var Summa = 0;
+	for(var i = 0; i < arrSomebodyKarti.length; i++)
+	{
+		if(arrSomebodyKarti[i] == 'J' || arrSomebodyKarti[i] == 'Q' || arrSomebodyKarti[i] == 'K'){
+			Summa = Summa + 10;
+		}else if(arrSomebodyKarti[i] == 'A') {
+			Summa = Summa + 11;
+		}else {
+			Summa = Summa + parseInt(arrSomebodyKarti[i]);
+		}
 	}
+	return Summa;
+}
 
-	//функция для генерации случайных карт
-	function razdachaKart(){
-		return arrKarti[sluchaynoeChislo(0,arrTsenaKart.length - 1)];
-	};
-
-	// // функция подсчета суммы карт
-	// function f_SummaKart(Sum,arr){
-	// for(var i=0; i<arrIgrok.length; i++){
-	// 	SummaIgroka = parseInt(SummaIgroka) + parseInt(arrIgrok[i]);
-	// return Sum;
-	// 	}
-	// }
+// функция подсчета вероятности проигрыша
+function VeroyatnostViigrisha (SummNumber){
+	var Raznitsa = 0;
+	var stop;
+	Raznitsa = 21 - SummNumber;
+	if(Raznitsa >= 11)
+		return 100;
+	if(Raznitsa < 2)
+		return 0;
+	for(var i = 0; i < arrKartiNumber.length; i++)
+	{
+		if(Raznitsa == arrKartiNumber[i])
+		{
+			stop = i+1;	 //i+1 количество выигрышных исходов из возможных 13-и спросить у Мгера
+			break;
+		}
+	}
+	return (100 - ((13 - stop)/13*100)).toFixed(2);
+}  
 
 //-----------------------------------------------------------------------------------
-	//цикл для выдачи двух карт сразу
-	for (var i=0; i < 2; i++) {
-		arrIgrok.push(razdachaKart());
-	}
 
-	//Сумма ценностей карт игрока
-	for(var i=0; i<arrIgrok.length; i++){
-		SummaIgroka = SummaIgroka + parseInt(arrIgrok[i]);
-	}
-		alert(typeof SummaIgroka);
+//Основной цикл (тело игры в Black Jack)
+do{
+
+
+	var Stop = '0';			//переменная для выхода из цикла
+	var SummaIgrok = 0;			//Сумма карт
+	var SummaDealer = 0;
+	var arrIgrok = [];						// Карты игрока	
+	var arrDealer = [];						// Карты дилера
+
+	//выдача двух карт играку на начало игры
+	arrIgrok.push(RazdachaKart());
+	arrIgrok.push(RazdachaKart());
+
 	
-	alert("Вам выпали карты: " + arrIgrok + " Сумма: " + SummaIgroka);
+	//считает сумму достоинств выпавшых карт
+	SummaIgrok = SummNumber(arrIgrok);
 
+
+	//цикл где игрок решает нужно ли ему брать добавочную карту или нет
 	do{
-
-		Eshe = prompt("Вам выпали карты: " + arrIgrok + "\n" + "\n" + "Желаете еще карту?" + "\n" + "\n" + "Если да вводите '0' , если нет 'ENTER'");
-		if(Eshe == '0'){
-			arrIgrok.push(razdachaKart());
-			for(var i=0; i<arrIgrok.length; i++){
-				SummaIgroka = SummaIgroka + parseInt(arrIgrok[arrIgrok.length - 1]);
-				if(SummaIgroka > 21){
-					alert("УПС! ПЕРЕБОР!" + "\n" + "Добавленная карта: " + arrIgrok[arrIgrok.length - 1] + "\n" + "\n" + "Вы проиграли");
-					break;
-					}
-				}
-			}			
-
-	alert("Ваши карты: " + arrIgrok + "\n" + "Сумма: " + SummaIgroka);
-
-	}while(Eshe == '0')
+		Eshe = prompt("Ваши карты: " + arrIgrok + "\n" + "\n" + " Сумма карт: " + SummaIgrok + "\n" + "\n" + "Желаете еще карту?" + "\n" + "\n" + "Если да вводите '0' , если нет 'ENTER'" + "\n" + "\n" + "ВНИМАННИЕ!!!" + "\n" + "\n" + "Вероятность выигрыша, если взять еще одну карту, будет равна: " + VeroyatnostViigrisha(parseInt(SummaIgrok)) + "%");
 		
-	arrIgrok = [];
+		if(Eshe == '0'){
+			arrIgrok.push(RazdachaKart());
+			SummaIgrok = SummNumber(arrIgrok);			
+			if(SummaIgrok > 21){
+				alert("УПС!" + "\n" + "ПЕРЕБОР!" + "\n" + "Добавленная карта: " + arrIgrok[arrIgrok.length-1] + "\n" + "\n" + "Ваши карты: " + arrIgrok + "\n" + "\n" + "Вы проиграли!" + "\n" + "Сумма: " + SummaIgrok);
+				break;
+					}
+			}else{			
+				alert("Ваши карты: " + arrIgrok + "\n" + "Сумма: " + SummaIgrok);
+			};
+	}while(Eshe == '0')
+	if(SummaIgrok > 21)
+	{
+		continue;
+	}
+
+//---------------------- Диллерская Часть -------------------------------------- 
+	
+	//выдача двух карт играку на начало игры
+	arrDealer.push(RazdachaKart());
+	arrDealer.push(RazdachaKart());
+	
+	//считает сумму достоинств выпавшых карт
+	SummaDealer = SummNumber(arrDealer);
+	
+	while (SummaDealer <= SummaIgrok) {
+		arrDealer.push(RazdachaKart());
+		SummaDealer = SummNumber(arrDealer);
+	}
+	
+	alert("Ваши карты: " + arrIgrok + "\n" + SummaIgrok + "\n" + "\n" + "Карты диллера: " + arrDealer  + "\n" + SummaDealer);
+
 Stop = prompt("Хотите завершить игру?" + "\n" + "Вводите '0' в поле с низу");
 } while (Stop != '0')
 
+//					▲▲▲▲▲▲▲▲▲▲▲▲▲ Исправно работает ▲▲▲▲▲▲▲
+//-------------------------------------------------------------------------------------------------
+//					▼▼▼▼▼▼▼▼▼▼▼▼▼ Дальше не доделано ▼▼▼▼▼▼
 </script>
+
