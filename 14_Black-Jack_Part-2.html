@@ -134,7 +134,7 @@
 			{
 				arrIgrok.push(RazdachaKart());
 				SummaIgrok = SummNumber(arrIgrok);
-				if(SummaIgrok == 21){
+				if(SummNumber(arrIgrok) == 21){
 					alert("!!! BLACK JACK !!!");
 					break;
 				}			
@@ -172,7 +172,7 @@
 		// случаи при исходах игры
 		if(SummaDealer == SummaIgrok)
 		{
-			Deposit += Stavka;	//по сколку в начале игры был снят депозит, при ничье его надо вернуть
+			Deposit = Deposit + parseInt(Stavka);	//по сколку в начале игры был снят депозит, при ничье его надо вернуть
 			alert("Ваш депозит: " + Deposit + "\n" + "\n" + "НИЧЬЯ!");
 		} else if(SummaDealer > SummaIgrok && SummaDealer <= 21)
 			alert("Ваш депозит: " + Deposit + "\n" + "\n" + "ВЫ ПРОИГРАЛИ!");
@@ -181,6 +181,7 @@
 			Deposit += 2*Stavka;
 			alert("Ваш депозит: " + Deposit + "\n" + "\n" + "ВЫ ВЫИГРАЛИ!");
 		};
+		
 		KolParti++;
 	}
 	alert("Вы истратили весь депозит. Игра окончена. Повезет в другой раз!" + "\n" + "\n" + "СПАСИБО ЗА ИГРУ!");
